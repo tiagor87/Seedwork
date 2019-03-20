@@ -4,8 +4,19 @@ using System.Linq;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class ValueObject : IEquatable<object>
+    public abstract class ValueObject : IEquatable<object>, IEqualityComparer<object>
     {
+        public new bool Equals(object x, object y)
+        {
+            if (ReferenceEquals(x, null) || ReferenceEquals(y, null)) return false;
+            return x.Equals(y);
+        }
+
+        public int GetHashCode(object obj)
+        {
+            return obj?.GetHashCode() ?? 0;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null || obj.GetType() != GetType()) return false;
