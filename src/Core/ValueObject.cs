@@ -1,21 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class ValueObject
+    public abstract class ValueObject : IEquatable<object>
     {
-        public static bool operator ==(ValueObject left, ValueObject right)
-        {
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(ValueObject left, ValueObject right)
-        {
-            return !(left == right);
-        }
-
         public override bool Equals(object obj)
         {
             if (obj == null || obj.GetType() != GetType()) return false;
@@ -27,12 +17,23 @@ namespace Seedwork.DomainDriven.Core
                 {
                     if (ReferenceEquals(thisValues.Current, null) ^ ReferenceEquals(otherValues.Current, null))
                         return false;
-                    if (thisValues.Current != null && thisValues.Current.Equals(otherValues.Current) == false)
+                    if (thisValues.Current != null && !thisValues.Current.Equals(otherValues.Current))
                         return false;
                 }
 
-                return (thisValues.MoveNext() == false) && (otherValues.MoveNext() == false);
+                return !thisValues.MoveNext() && !otherValues.MoveNext();
             }
+        }
+
+        public static bool operator ==(ValueObject left, ValueObject right)
+        {
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ValueObject left, ValueObject right)
+        {
+            return !(left == right);
         }
 
         public override int GetHashCode()

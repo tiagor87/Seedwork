@@ -4,10 +4,10 @@ using System.Collections.ObjectModel;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class Entity
+    public abstract class Entity : IEquatable<object>
     {
         private readonly List<DomainEvent> _domainEvents;
-        private int? _requestedHashCode;
+        private readonly Guid _transientId;
 
         protected Entity(long id) : this()
         {
@@ -18,6 +18,7 @@ namespace Seedwork.DomainDriven.Core
         {
             CreatedAt = DateTime.UtcNow;
             _domainEvents = new List<DomainEvent>();
+            _transientId = Guid.NewGuid();
         }
 
         public long? Id { get; protected set; }
@@ -25,35 +26,9 @@ namespace Seedwork.DomainDriven.Core
 
         public DateTime CreatedAt { get; private set; }
 
-        protected void RaiseDomainEvent(DomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
-        }
-
-        private bool IsTransient()
-        {
-            return Id == null || Id == 0;
-        }
-
-        public static bool operator ==(Entity left, Entity right)
-        {
-            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(Entity left, Entity right)
-        {
-            return !(left == right);
-        }
-
         public override bool Equals(object obj)
         {
-            if (obj == null || obj is Entity == false)
+            if (!(obj is Entity))
                 return false;
 
             if (ReferenceEquals(this, obj))
@@ -70,13 +45,37 @@ namespace Seedwork.DomainDriven.Core
             return item.Id.Equals(Id);
         }
 
+        protected void RaiseDomainEvent(DomainEvent domainEvent)
+        {
+            _domainEvents.Add(domainEvent);
+        }
+
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
+        private bool IsTransient()
+        {
+            return Id == null || Id == 0;
+        }
+
+        private long GetId() => Id ?? throw new NullReferenceException(nameof(Id));
+
+        public static bool operator ==(Entity left, Entity right)
+        {
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Entity left, Entity right)
+        {
+            return !(left == right);
+        }
+
         public override int GetHashCode()
         {
-            if (IsTransient()) return base.GetHashCode();
-
-            return _requestedHashCode.HasValue
-                ? _requestedHashCode.Value
-                : (_requestedHashCode = Id.GetHashCode()).Value;
+            return IsTransient() ? _transientId.GetHashCode() : GetId().GetHashCode();
         }
     }
 }
