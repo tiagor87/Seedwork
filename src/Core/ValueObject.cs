@@ -6,7 +6,7 @@ namespace Seedwork.DomainDriven.Core
 {
     public abstract class ValueObject : IEquatable<ValueObject>
     {
-        public bool Equals(ValueObject other)
+        public virtual bool Equals(ValueObject other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;

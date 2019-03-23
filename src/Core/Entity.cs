@@ -26,7 +26,7 @@ namespace Seedwork.DomainDriven.Core
 
         public DateTime CreatedAt { get; private set; }
 
-        public bool Equals(Entity other)
+        public virtual bool Equals(Entity other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
