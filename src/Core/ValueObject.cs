@@ -4,23 +4,13 @@ using System.Linq;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class ValueObject : IEquatable<object>, IEqualityComparer<object>
+    public abstract class ValueObject : IEquatable<ValueObject>
     {
-        public new bool Equals(object x, object y)
+        public bool Equals(ValueObject other)
         {
-            if (ReferenceEquals(x, null) || ReferenceEquals(y, null)) return false;
-            return x.Equals(y);
-        }
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
 
-        public int GetHashCode(object obj)
-        {
-            return obj?.GetHashCode() ?? 0;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null || obj.GetType() != GetType()) return false;
-            var other = (ValueObject) obj;
             using (var thisValues = GetAtomicValues().GetEnumerator())
             using (var otherValues = other.GetAtomicValues().GetEnumerator())
             {
@@ -34,6 +24,13 @@ namespace Seedwork.DomainDriven.Core
 
                 return !thisValues.MoveNext() && !otherValues.MoveNext();
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj is ValueObject other && Equals(other);
         }
 
         public static bool operator ==(ValueObject left, ValueObject right)

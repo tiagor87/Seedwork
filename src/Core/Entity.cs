@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class Entity : IEquatable<object>, IEqualityComparer<object>
+    public abstract class Entity : IEquatable<Entity>
     {
         private readonly List<DomainEvent> _domainEvents;
         private readonly Guid _transientId;
@@ -26,34 +26,17 @@ namespace Seedwork.DomainDriven.Core
 
         public DateTime CreatedAt { get; private set; }
 
-        public new bool Equals(object x, object y)
+        public bool Equals(Entity other)
         {
-            if (ReferenceEquals(x, null) || ReferenceEquals(y, null)) return false;
-            return x.Equals(y);
-        }
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
 
-        public int GetHashCode(object obj)
-        {
-            return obj?.GetHashCode() ?? 0;
-        }
+            if (other.GetType() != GetType()) return false;
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Entity))
+            if (other.IsTransient() || IsTransient())
                 return false;
 
-            if (ReferenceEquals(this, obj))
-                return true;
-
-            if (GetType() != obj.GetType())
-                return false;
-
-            var item = (Entity) obj;
-
-            if (item.IsTransient() || IsTransient())
-                return false;
-
-            return item.Id.Equals(Id);
+            return other.Id.Equals(Id);
         }
 
         protected void RaiseDomainEvent(DomainEvent domainEvent)
@@ -91,6 +74,11 @@ namespace Seedwork.DomainDriven.Core
         {
             if (IsTransient()) return _transientId;
             return Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Entity other && Equals(other);
         }
     }
 }
