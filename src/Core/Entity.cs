@@ -9,7 +9,7 @@ namespace Seedwork.DomainDriven.Core
         private readonly List<DomainEvent> _domainEvents;
         private readonly Guid _transientId;
 
-        protected Entity(long id) : this()
+        protected Entity(object id) : this()
         {
             Id = id;
         }
@@ -21,7 +21,7 @@ namespace Seedwork.DomainDriven.Core
             _transientId = Guid.NewGuid();
         }
 
-        public long? Id { get; protected set; }
+        public object Id { get; protected set; }
         public ReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         public DateTime CreatedAt { get; private set; }
@@ -67,7 +67,7 @@ namespace Seedwork.DomainDriven.Core
 
         private bool IsTransient()
         {
-            return Id == null || Id == 0;
+            return Id == null;
         }
 
         private object GetId()
