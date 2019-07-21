@@ -1,8 +1,8 @@
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class AggregateRoot : Entity
+    public abstract class AggregateRoot<TId> : Entity<TId>
     {
-        protected AggregateRoot(object id) : base(id)
+        protected AggregateRoot(TId id) : base(id)
         {
         }
 

@@ -4,7 +4,7 @@ using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
 
 namespace Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg
 {
-    public class Person : AggregateRoot
+    public class Person : AggregateRoot<long>
     {
         public Person(long id, Name name) : base(id)
         {

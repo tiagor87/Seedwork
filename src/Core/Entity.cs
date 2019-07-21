@@ -4,12 +4,12 @@ using System.Collections.ObjectModel;
 
 namespace Seedwork.DomainDriven.Core
 {
-    public abstract class Entity : IEquatable<Entity>
+    public abstract class Entity<TId> : IEquatable<Entity<TId>>
     {
         private readonly List<DomainEvent> _domainEvents;
         private readonly Guid _transientId;
 
-        protected Entity(object id) : this()
+        protected Entity(TId id) : this()
         {
             Id = id;
         }
@@ -21,12 +21,12 @@ namespace Seedwork.DomainDriven.Core
             _transientId = Guid.NewGuid();
         }
 
-        public object Id { get; protected set; }
+        public TId Id { get; protected set; }
         public ReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         public DateTime CreatedAt { get; private set; }
 
-        public virtual bool Equals(Entity other)
+        public virtual bool Equals(Entity<TId> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -49,13 +49,13 @@ namespace Seedwork.DomainDriven.Core
             _domainEvents.Clear();
         }
 
-        public static bool operator ==(Entity left, Entity right)
+        public static bool operator ==(Entity<TId> left, Entity<TId> right)
         {
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
             return left.Equals(right);
         }
 
-        public static bool operator !=(Entity left, Entity right)
+        public static bool operator !=(Entity<TId> left, Entity<TId> right)
         {
             return !(left == right);
         }
@@ -67,7 +67,7 @@ namespace Seedwork.DomainDriven.Core
 
         private bool IsTransient()
         {
-            return Id == null;
+            return Equals(Id, default(TId));
         }
 
         private object GetId()
@@ -78,7 +78,7 @@ namespace Seedwork.DomainDriven.Core
 
         public override bool Equals(object obj)
         {
-            return obj is Entity other && Equals(other);
+            return obj is Entity<TId> other && Equals(other);
         }
     }
 }

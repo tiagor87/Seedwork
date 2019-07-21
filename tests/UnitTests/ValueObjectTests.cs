@@ -76,6 +76,27 @@ namespace Seedwork.DomainDriven.UnitTests
             name.GetHashCode().Should().Be(0);
         }
 
+        [Fact(DisplayName = @"GIVEN value_object, WHEN other null, SHOULD be different")]
+        public void Given_value_object_when_other_null_should_be_different()
+        {
+            var name = new Name("Name");
+            name.Equals((object) null).Should().BeFalse();
+        }
+
+        [Fact(DisplayName = @"GIVEN value_object, WHEN same reference, SHOULD be equals")]
+        public void Given_value_object_when_same_reference_as_object_should_be_equal()
+        {
+            var name = new Name("Name");
+            name.Equals((object) name).Should().BeTrue();
+        }
+
+        [Fact(DisplayName = @"GIVEN value_object, WHEN same reference, SHOULD be equals")]
+        public void Given_value_object_when_same_reference_should_be_equal()
+        {
+            var name = new Name("Name");
+            name.Equals(name).Should().BeTrue();
+        }
+
         [Fact(DisplayName = @"GIVEN value objects, WHEN some is null, SHOULD not be null")]
         public void Given_value_objects_when_some_null_should_not_be_equal()
         {
