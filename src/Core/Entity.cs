@@ -82,7 +82,7 @@ namespace Seedwork.DomainDriven.Core
         /// <inheritdoc cref="Object"/>
         public override int GetHashCode()
         {
-            return IsTransient() ? _transientId.GetHashCode() : GetId().GetHashCode();
+            return GetId().GetHashCode();
         }
 
         /// <summary>
