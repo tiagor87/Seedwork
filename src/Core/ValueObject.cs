@@ -13,7 +13,7 @@ namespace Seedwork.DomainDriven.Core
         /// Compare current value object to another value object.
         /// </summary>
         /// <param name="other">Value object instance.</param>
-        /// <returns></returns>
+        /// <returns>True if <paramref name="other"/> is equal to the current instance.</returns>
         public virtual bool Equals(ValueObject other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -34,6 +34,11 @@ namespace Seedwork.DomainDriven.Core
             }
         }
 
+        /// <summary>
+        /// Compare current value object to another object.
+        /// </summary>
+        /// <param name="obj">Object instance.</param>
+        /// <returns>True if <paramref name="obj"/> is equal to the current instance.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -41,6 +46,12 @@ namespace Seedwork.DomainDriven.Core
             return obj is ValueObject other && Equals(other);
         }
 
+        /// <summary>
+        /// Check if current value object and another value object are equal.
+        /// </summary>
+        /// <param name="left">First value object.</param>
+        /// <param name="right">Last value object.</param>
+        /// <returns>True if <paramref name="left"/> is equal to <paramref name="right"/>.</returns>
         public static bool operator ==(ValueObject left, ValueObject right)
         {
             if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
@@ -48,11 +59,18 @@ namespace Seedwork.DomainDriven.Core
             return left.Equals(right);
         }
 
+        /// <summary>
+        /// Check if current value object and another value object are different.
+        /// </summary>
+        /// <param name="left">First value object.</param>
+        /// <param name="right">Last value object.</param>
+        /// <returns>True if <paramref name="left"/> is equal to <paramref name="right"/>.</returns>
         public static bool operator !=(ValueObject left, ValueObject right)
         {
             return !(left == right);
         }
 
+        /// <inheritdoc cref="Object"/>
         public override int GetHashCode()
         {
             return GetAtomicValues()
@@ -60,6 +78,10 @@ namespace Seedwork.DomainDriven.Core
                 .Aggregate((x, y) => x ^ y);
         }
 
+        /// <summary>
+        /// Gets values that make value object unique.
+        /// </summary>
+        /// <returns>List of values.</returns>
         protected abstract IEnumerable<object> GetAtomicValues();
     }
 }

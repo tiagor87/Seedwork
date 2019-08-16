@@ -19,7 +19,7 @@ namespace Seedwork.DomainDriven.Core
         }
 
         /// <summary>
-        /// Gets creation date of event.
+        /// Get creation date.
         /// </summary>
         public DateTime CreatedAt { get; }
     }

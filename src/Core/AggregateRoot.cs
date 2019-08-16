@@ -13,7 +13,7 @@ namespace Seedwork.DomainDriven.Core
         /// <summary>
         /// Initializes a new instance.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Aggegate root identification.</param>
         protected AggregateRoot(TId id) : base(id)
         {
         }
@@ -26,7 +26,7 @@ namespace Seedwork.DomainDriven.Core
         }
 
         /// <summary>
-        /// Gets read only list of domain events. 
+        /// Get read only list of domain events. 
         /// </summary>
         public IEnumerable<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
