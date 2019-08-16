@@ -4,8 +4,16 @@ using System.Linq;
 
 namespace Seedwork.DomainDriven.Core
 {
+    /// <summary>
+    /// Abstract class of value object.
+    /// </summary>
     public abstract class ValueObject : IEquatable<ValueObject>
     {
+        /// <summary>
+        /// Compare current value object to another value object.
+        /// </summary>
+        /// <param name="other">Value object instance.</param>
+        /// <returns></returns>
         public virtual bool Equals(ValueObject other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -35,6 +43,7 @@ namespace Seedwork.DomainDriven.Core
 
         public static bool operator ==(ValueObject left, ValueObject right)
         {
+            if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
             return left.Equals(right);
         }

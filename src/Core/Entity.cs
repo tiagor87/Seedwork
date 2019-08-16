@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Seedwork.DomainDriven.Core
 {
     public abstract class Entity<TId> : IEquatable<Entity<TId>>
     {
-        private readonly List<DomainEvent> _domainEvents;
         private readonly Guid _transientId;
 
         protected Entity(TId id) : this()
@@ -17,12 +14,10 @@ namespace Seedwork.DomainDriven.Core
         protected Entity()
         {
             CreatedAt = DateTime.UtcNow;
-            _domainEvents = new List<DomainEvent>();
             _transientId = Guid.NewGuid();
         }
 
         public TId Id { get; protected set; }
-        public ReadOnlyCollection<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
         public DateTime CreatedAt { get; private set; }
 
@@ -39,18 +34,9 @@ namespace Seedwork.DomainDriven.Core
             return other.Id.Equals(Id);
         }
 
-        protected void RaiseDomainEvent(DomainEvent domainEvent)
-        {
-            _domainEvents.Add(domainEvent);
-        }
-
-        public void ClearDomainEvents()
-        {
-            _domainEvents.Clear();
-        }
-
         public static bool operator ==(Entity<TId> left, Entity<TId> right)
         {
+            if (ReferenceEquals(left, null) && ReferenceEquals(right, null)) return true;
             if (ReferenceEquals(left, null) || ReferenceEquals(right, null)) return false;
             return left.Equals(right);
         }

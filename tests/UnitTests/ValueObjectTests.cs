@@ -97,6 +97,14 @@ namespace Seedwork.DomainDriven.UnitTests
             name.Equals(name).Should().BeTrue();
         }
 
+        [Fact(DisplayName = @"GIVEN value objects, WHEN compare null values, SHOULD be equals")]
+        public void Given_value_objects_when_compare_null_values_should_be_equals()
+        {
+            Name name = null;
+
+            (name == null).Should().BeTrue();
+        }
+
         [Fact(DisplayName = @"GIVEN value objects, WHEN some is null, SHOULD not be null")]
         public void Given_value_objects_when_some_null_should_not_be_equal()
         {

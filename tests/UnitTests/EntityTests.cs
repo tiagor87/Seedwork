@@ -1,9 +1,7 @@
 using System;
-using System.Linq;
 using FluentAssertions;
 using Seedwork.DomainDriven.UnitTests.Stubs.OrderAgg;
 using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.Events;
 using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
@@ -110,24 +108,12 @@ namespace Seedwork.DomainDriven.UnitTests
             (person != order).Should().BeTrue();
         }
 
-        [Fact(DisplayName = @"GIVEN entity, SHOULD clear domain event")]
-        public void Given_entity_should_clear_domain_event()
+        [Fact(DisplayName = @"GIVEN entities, WHEN compare null values, SHOULD be equals")]
+        public void Given_entities_when_compare_null_values_should_be_equals()
         {
-            var person = new Person(new Name("Name"));
-            person.ClearDomainEvents();
+            Person person = null;
 
-            person.DomainEvents.Should().BeEmpty();
-        }
-
-        [Fact(DisplayName = @"GIVEN entity, SHOULD raise domain event")]
-        public void Given_entity_should_raise_domain_event()
-        {
-            var person = new Person(new Name("Name"));
-
-            person.DomainEvents.Should().NotBeEmpty();
-            person.DomainEvents.OfType<PersonCreated>().Should().NotBeEmpty();
-            person.DomainEvents.OfType<PersonCreated>().First().CreatedAt.Should()
-                .BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(1));
+            (person == null).Should().BeTrue();
         }
     }
 }
