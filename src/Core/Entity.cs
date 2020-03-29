@@ -54,6 +54,16 @@ namespace Seedwork.DomainDriven.Core
 
             return other.Id.Equals(Id);
         }
+        
+        /// <summary>
+        /// Compare current entity to another object.
+        /// </summary>
+        /// <param name="obj">Object instance.</param>
+        /// <returns>True if <paramref name="obj"/> is equal to the current instance.</returns>
+        public override bool Equals(object obj)
+        {
+            return obj is Entity<TId> other && Equals(other);
+        }
 
         /// <summary>
         /// Check if first value object and another are the same.
@@ -102,16 +112,6 @@ namespace Seedwork.DomainDriven.Core
         {
             if (IsTransient()) return _transientId;
             return Id;
-        }
-
-        /// <summary>
-        /// Compare current entity to another object.
-        /// </summary>
-        /// <param name="obj">Object instance.</param>
-        /// <returns>True if <paramref name="obj"/> is equal to the current instance.</returns>
-        public override bool Equals(object obj)
-        {
-            return obj is Entity<TId> other && Equals(other);
         }
     }
 }
