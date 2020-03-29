@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.Events;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Tests.Stubs.PersonAgg;
+using TRDomainDriven.Tests.Stubs.PersonAgg.Events;
+using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace Seedwork.DomainDriven.UnitTests
+namespace TRDomainDriven.Tests
 {
     public class AggregateRootTests
     {

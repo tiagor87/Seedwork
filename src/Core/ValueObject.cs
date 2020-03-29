@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Seedwork.DomainDriven.Core
+namespace TRDomainDriven.Core
 {
     /// <summary>
     /// Abstract class of value object.

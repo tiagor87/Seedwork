@@ -1,11 +1,11 @@
 using System;
 using FluentAssertions;
-using Seedwork.DomainDriven.UnitTests.Stubs.OrderAgg;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Tests.Stubs.OrderAgg;
+using TRDomainDriven.Tests.Stubs.PersonAgg;
+using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace Seedwork.DomainDriven.UnitTests
+namespace TRDomainDriven.Tests
 {
     [Trait("Category", "UnitTests")]
     [Trait("Class", "Entity")]

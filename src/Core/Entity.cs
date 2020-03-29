@@ -1,6 +1,6 @@
 using System;
 
-namespace Seedwork.DomainDriven.Core
+namespace TRDomainDriven.Core
 {
     /// <summary>
     /// Abstract class of entity.
@@ -54,7 +54,7 @@ namespace Seedwork.DomainDriven.Core
 
             return other.Id.Equals(Id);
         }
-        
+
         /// <summary>
         /// Compare current entity to another object.
         /// </summary>

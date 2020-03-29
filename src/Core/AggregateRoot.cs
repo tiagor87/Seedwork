@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Seedwork.DomainDriven.Core
+namespace TRDomainDriven.Core
 {
     /// <summary>
     /// Abstract class of Aggregate Root.

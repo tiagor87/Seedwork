@@ -1,6 +1,6 @@
-using Seedwork.DomainDriven.Core;
+using TRDomainDriven.Core;
 
-namespace Seedwork.DomainDriven.UnitTests.Stubs.OrderAgg
+namespace TRDomainDriven.Tests.Stubs.OrderAgg
 {
     public class Order : AggregateRoot<long>
     {

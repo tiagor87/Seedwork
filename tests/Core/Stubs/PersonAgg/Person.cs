@@ -1,8 +1,8 @@
-using Seedwork.DomainDriven.Core;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.Events;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Core;
+using TRDomainDriven.Tests.Stubs.PersonAgg.Events;
+using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
 
-namespace Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg
+namespace TRDomainDriven.Tests.Stubs.PersonAgg
 {
     public class Person : AggregateRoot<long>
     {

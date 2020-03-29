@@ -1,8 +1,8 @@
 using FluentAssertions;
-using Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace Seedwork.DomainDriven.UnitTests
+namespace TRDomainDriven.Tests
 {
     [Trait("Category", "UnitTests")]
     [Trait("Class", "ValueObject")]
@@ -80,14 +80,14 @@ namespace Seedwork.DomainDriven.UnitTests
         public void Given_value_object_when_other_null_should_be_different()
         {
             var name = new Name("Name");
-            name.Equals((object) null).Should().BeFalse();
+            name.Equals((object)null).Should().BeFalse();
         }
 
         [Fact(DisplayName = @"GIVEN value_object, WHEN same reference, SHOULD be equals")]
         public void Given_value_object_when_same_reference_as_object_should_be_equal()
         {
             var name = new Name("Name");
-            name.Equals((object) name).Should().BeTrue();
+            name.Equals((object)name).Should().BeTrue();
         }
 
         [Fact(DisplayName = @"GIVEN value_object, WHEN same reference, SHOULD be equals")]

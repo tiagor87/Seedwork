@@ -1,6 +1,6 @@
-using Seedwork.DomainDriven.Core;
+using TRDomainDriven.Core;
 
-namespace Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.Events
+namespace TRDomainDriven.Tests.Stubs.PersonAgg.Events
 {
     public class PersonCreated : DomainEvent
     {

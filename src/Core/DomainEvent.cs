@@ -1,7 +1,7 @@
 using System;
 using MediatR;
 
-namespace Seedwork.DomainDriven.Core
+namespace TRDomainDriven.Core
 {
     /// <summary>
     /// Abstract class of domain event.

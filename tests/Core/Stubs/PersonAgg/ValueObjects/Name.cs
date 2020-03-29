@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Seedwork.DomainDriven.Core;
+using TRDomainDriven.Core;
 
-namespace Seedwork.DomainDriven.UnitTests.Stubs.PersonAgg.ValueObjects
+namespace TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects
 {
     public class Name : ValueObject
     {
