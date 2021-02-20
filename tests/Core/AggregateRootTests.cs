@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using FluentAssertions;
-using TRDomainDriven.Tests.Stubs.PersonAgg;
-using TRDomainDriven.Tests.Stubs.PersonAgg.Events;
-using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.Events;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace TRDomainDriven.Tests
+namespace TRDomainDriven.Core.Tests
 {
     public class AggregateRootTests
     {

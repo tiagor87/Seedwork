@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using TRDomainDriven.Core;
 
-namespace TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects
+namespace TRDomainDriven.Core.Tests.Stubs.PersonAgg.ValueObjects
 {
     public class Name : ValueObject
     {

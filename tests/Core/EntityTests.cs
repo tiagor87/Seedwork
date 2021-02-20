@@ -1,11 +1,11 @@
 using System;
 using FluentAssertions;
-using TRDomainDriven.Tests.Stubs.OrderAgg;
-using TRDomainDriven.Tests.Stubs.PersonAgg;
-using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Core.Tests.Stubs.OrderAgg;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace TRDomainDriven.Tests
+namespace TRDomainDriven.Core.Tests
 {
     [Trait("Category", "UnitTests")]
     [Trait("Class", "Entity")]

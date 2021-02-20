@@ -26,7 +26,7 @@ namespace TRDomainDriven.Core
                 {
                     if (ReferenceEquals(thisValues.Current, null) ^ ReferenceEquals(otherValues.Current, null))
                         return false;
-                    if (thisValues.Current != null && !thisValues.Current.Equals(otherValues.Current))
+                    if (!ReferenceEquals(thisValues.Current, null) && !thisValues.Current.Equals(otherValues.Current))
                         return false;
                 }
 
@@ -74,7 +74,7 @@ namespace TRDomainDriven.Core
         public override int GetHashCode()
         {
             return GetAtomicValues()
-                .Select(x => x != null ? x.GetHashCode() : 0)
+                .Select(x => !ReferenceEquals(x, null) ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
         }
 

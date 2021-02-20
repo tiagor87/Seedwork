@@ -1,8 +1,7 @@
-using TRDomainDriven.Core;
-using TRDomainDriven.Tests.Stubs.PersonAgg.Events;
-using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.Events;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.ValueObjects;
 
-namespace TRDomainDriven.Tests.Stubs.PersonAgg
+namespace TRDomainDriven.Core.Tests.Stubs.PersonAgg
 {
     public class Person : AggregateRoot<long>
     {
@@ -17,6 +16,13 @@ namespace TRDomainDriven.Tests.Stubs.PersonAgg
             RaiseDomainEvent(new PersonCreated());
         }
 
+        public Person(Name name, Birthdate birthdate)
+        {
+            Name = name;
+            Birthdate = birthdate;
+        }
+
         public Name Name { get; }
+        public Birthdate Birthdate { get; }
     }
 }

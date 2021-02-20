@@ -1,6 +1,4 @@
-using TRDomainDriven.Core;
-
-namespace TRDomainDriven.Tests.Stubs.OrderAgg
+namespace TRDomainDriven.Core.Tests.Stubs.OrderAgg
 {
     public class Order : AggregateRoot<long>
     {

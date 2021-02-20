@@ -1,8 +1,8 @@
 using FluentAssertions;
-using TRDomainDriven.Tests.Stubs.PersonAgg.ValueObjects;
+using TRDomainDriven.Core.Tests.Stubs.PersonAgg.ValueObjects;
 using Xunit;
 
-namespace TRDomainDriven.Tests
+namespace TRDomainDriven.Core.Tests
 {
     [Trait("Category", "UnitTests")]
     [Trait("Class", "ValueObject")]
