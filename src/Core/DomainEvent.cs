@@ -1,4 +1,5 @@
 using System;
+using TRMediator.Core.Abstractions;
 
 namespace TRDomainDriven.Core
 {
@@ -7,7 +8,7 @@ namespace TRDomainDriven.Core
     ///
     /// Implements <see cref="INotification"/> of <see cref="MediatR"/>.
     /// </summary>
-    public abstract class DomainEvent
+    public abstract class DomainEvent : IEvent
     {
         /// <summary>
         /// Initializes a new instance of DomainEvent.

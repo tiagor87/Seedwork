@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <Title>TRDomainDriven.Core</Title>
         <Authors>tiagor87@gmail.com</Authors>
         <Description>Seedwork for domain driven project</Description>
@@ -9,5 +9,9 @@
         <RepositoryUrl>https://github.com/tiagor87/tr-domain-driven</RepositoryUrl>
         <ProjectGuid>{611F659D-3124-461C-B0E3-E3D99AE1D96F}</ProjectGuid>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="TRMediator.Core" Version="0.0.3" />
+    </ItemGroup>
 
 </Project>
